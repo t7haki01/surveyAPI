@@ -33,6 +33,18 @@ router.get('/:question_id?/options/', function(req, res, next) {
   }
 });
 
+router.get('/:question_id?/results/', function(req, res, next) {
+  if (req.params.question_id) {
+    questions.getResults(req.params.question_id, function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  }
+});
+
 router.post('/', function(req, res, next) {
   questions.addquestion(req.body, function(err, count) {
     if (err) {

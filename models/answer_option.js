@@ -34,7 +34,6 @@ var answer_option = {
       'update answer_options set answer_option=?, questionFK=? where id=?',
       [
         answer_options.answer_option,
-        ,
         answer_options.questionFK,
         answer_option_id
       ],

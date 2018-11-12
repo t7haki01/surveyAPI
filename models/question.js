@@ -10,13 +10,23 @@ var question = {
       callback
     );
   },
+
   getAlloptions: function(question_id, callback) {
     return db.query(
-      'select * from answer_options where questionFK=?',
+      'select answer_option from question inner join answer_options on question.id = answer_options.questionFK where question.id = ?',
       [question_id],
       callback
     );
   },
+
+  getResults: function(question_id, callback) {
+    return db.query(
+      'select user_answer, userFK from question inner join answers on question.id = answers.question where question.id = ?',
+      [question_id],
+      callback
+    );
+  },
+
   addquestion: function(questions, callback) {
     return db.query(
       'insert into question values(?,?,?)',
@@ -30,7 +40,7 @@ var question = {
   updatequestion: function(question_id, questions, callback) {
     return db.query(
       'update question set question=?, surveyFK=? where id=?',
-      [questions.question, questeions.surveyFK, question_id],
+      [questions.question, questions.surveyFK, question_id],
       callback
     );
   }
