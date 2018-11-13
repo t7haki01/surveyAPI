@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `survey` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `survey`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: survey
@@ -21,7 +23,7 @@
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'test1','pass01',0),(2,'test2','pass02',0),(3,'test3','pass03',0);
+INSERT INTO `account` VALUES (1,'test1','pass1',0,'2018-11-12 22:00:00','2019-11-12 22:00:00','2018-11-12 22:00:00'),(2,'test2','pass2',0,'2018-11-12 22:00:00','2019-11-12 22:00:00','2018-11-12 22:00:00'),(3,'test3','pass3',0,'2018-11-12 22:00:00','2019-11-12 22:00:00','2018-11-12 22:00:00'),(5,'postman','test',1,'2018-11-12 22:00:00','2018-11-12 22:00:00','2018-11-12 22:00:00');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -41,7 +43,6 @@ UNLOCK TABLES;
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (2,'3',8,1),(3,'Monday',7,2),(4,'Friday',8,2);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +72,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (7,'test','from postman',1,'2018-11-11 22:00:00','2018-11-11 20:00:00','2018-11-11 20:00:00'),(8,'second','tester',2,'2018-11-11 22:00:00','2018-11-11 22:00:00','2019-11-11 22:00:00');
+INSERT INTO `user` VALUES (1,'test','from postman',1,'testemail@postman.com','2018-10-10','111-1111-11111','testkuja1','11111',11,'2018-11-11 22:00:00'),(2,'second','tester',2,'test2@test.com','0000-00-00','007-007-007','testkatu2','67894',10,'2018-11-12 22:00:00'),(3,'third','tester',3,'test3@test.com','2018-11-13','333-333-3333','testkatu3','33333',33,'2018-11-12 22:00:00'),(4,'post','man',5,'postman@test.com','2018-11-11','999-999-9999','postmanKatu1','00000',999,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -84,4 +85,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12 13:57:59
+-- Dump completed on 2018-11-13 11:07:30
