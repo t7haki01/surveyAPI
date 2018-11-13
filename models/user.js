@@ -8,15 +8,19 @@ var user = {
   },
   adduser: function(users, callback) {
     return db.query(
-      'insert into user values(?,?,?,?,?,?,?)',
+      'insert into user values(?,?,?,?,?,?,?,?,?,?,?)',
       [
         users.id,
         users.firstname,
         users.lastname,
         users.accountFK,
-        users.signupDate,
-        users.lastmodifiedDate,
-        user.expireDate
+        users.email,
+        users.birthdate,
+        users.phone,
+        users.streetAddress,
+        users.postalCode,
+        users.rewards,
+        users.modifiedDate
       ],
       callback
     );
@@ -26,13 +30,18 @@ var user = {
   },
   updateuser: function(user_id, users, callback) {
     return db.query(
-      'update user set firstname=?, lastname=?, accountFK=?, lastmodifiedDate=?, expireDate=? where id=?',
+      'update user set firstname=?, lastname=?, accountFK=?, email=?, birthdate=?, phone=?, streetAddress=?, postalCode=?, rewards=?, modifiedDate=? where id=?',
       [
         users.firstname,
         users.lastname,
         users.accountFK,
-        users.lastmodifiedDate,
-        users.expireDate,
+        users.email,
+        users.birthdate,
+        users.phone,
+        users.streetAddress,
+        users.postalCode,
+        users.rewards,
+        users.modifiedDate,
         user_id
       ],
       callback

@@ -8,8 +8,16 @@ var account = {
   },
   addaccount: function(accounts, callback) {
     return db.query(
-      'insert into account values(?,?,?,?)',
-      [accounts.id, accounts.account, accounts.password, accounts.isExpired],
+      'insert into account values(?,?,?,?,?,?,?)',
+      [
+        accounts.id,
+        accounts.account,
+        accounts.password,
+        accounts.isExpired,
+        accounts.joinedDate,
+        accounts.expireDate,
+        accounts.modifiedDate
+      ],
       callback
     );
   },
@@ -18,8 +26,16 @@ var account = {
   },
   updateaccount: function(account_id, accounts, callback) {
     return db.query(
-      'update account set account=?, password=?, isExpired=? where id=?',
-      [accounts.account, accounts.password, accounts.isExpired, account_id],
+      'update account set account=?, password=?, isExpired=?, joinedDate=?, expireDate=?, modifiedDate=? where id=?',
+      [
+        accounts.account,
+        accounts.password,
+        accounts.isExpired,
+        accounts.joinedDate,
+        accounts.expireDate,
+        accounts.modifiedDate,
+        account_id
+      ],
       callback
     );
   }

@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `survey` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `survey`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: survey
@@ -27,10 +29,22 @@ CREATE TABLE `account` (
   `account` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `isExpired` tinyint(4) DEFAULT NULL,
+  `joinedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `expireDate` timestamp NULL DEFAULT NULL,
+  `modifiedDate` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_UNIQUE` (`account`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `answer_options`
@@ -50,6 +64,16 @@ CREATE TABLE `answer_options` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `answer_options`
+--
+
+LOCK TABLES `answer_options` WRITE;
+/*!40000 ALTER TABLE `answer_options` DISABLE KEYS */;
+INSERT INTO `answer_options` VALUES (1,'1',1),(2,'2',1),(3,'3',1),(4,'4',1),(5,'5',1),(7,'Tuesday',2),(8,'Wednesday',2),(9,'Thursday',2),(10,'Friday',2),(11,'Red',3),(12,'Blue',3),(13,'Yellow',3),(14,'Black',3),(15,'White',3),(16,'Coke Cola',4),(17,'Pepsi',4),(18,'Fanta',4),(19,'Redbull',4),(20,'Water',4),(21,'Sausage',5),(22,'Sushi',5),(23,'Kebab',5),(24,'Pizza',5),(25,'Hamburger',5),(26,'Laiva',6),(27,'Car',6),(28,'Watch',6),(29,'Sauna',6),(30,'Kitchen',6),(31,'Sunday',2);
+/*!40000 ALTER TABLE `answer_options` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `answers`
 --
 
@@ -66,8 +90,17 @@ CREATE TABLE `answers` (
   KEY `questionFK_answers_idx` (`question`),
   CONSTRAINT `questionFK_answers` FOREIGN KEY (`question`) REFERENCES `question` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `userFK` FOREIGN KEY (`userFK`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `answers`
+--
+
+LOCK TABLES `answers` WRITE;
+/*!40000 ALTER TABLE `answers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `answers` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `question`
@@ -83,8 +116,18 @@ CREATE TABLE `question` (
   PRIMARY KEY (`id`),
   KEY `surveyFK_idx` (`surveyFK`),
   CONSTRAINT `surveyFK` FOREIGN KEY (`surveyFK`) REFERENCES `survey` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question`
+--
+
+LOCK TABLES `question` WRITE;
+/*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` VALUES (1,'What is your favorite number among those?',1),(2,'Which day is the best?',1),(3,'What is your favorite color?',1),(4,'What would you like to drink?',2),(5,'What would you eat?',2),(6,'What would you buy?',2),(7,'What do you want to do?',1);
+/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `survey`
@@ -97,8 +140,18 @@ CREATE TABLE `survey` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `survey`
+--
+
+LOCK TABLES `survey` WRITE;
+/*!40000 ALTER TABLE `survey` DISABLE KEYS */;
+INSERT INTO `survey` VALUES (1,'Survey Test1'),(2,'Survey Test2'),(3,'It used to be Test from postman');
+/*!40000 ALTER TABLE `survey` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user`
@@ -112,14 +165,27 @@ CREATE TABLE `user` (
   `firstname` varchar(100) DEFAULT NULL,
   `lastname` varchar(100) DEFAULT NULL,
   `accountFK` int(11) DEFAULT NULL,
-  `signupDate` timestamp NULL DEFAULT NULL,
-  `lastmodifiedDate` timestamp NULL DEFAULT NULL,
-  `expireDate` timestamp NULL DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `birthdate` date DEFAULT NULL,
+  `phone` varchar(100) DEFAULT NULL,
+  `streetAddress` varchar(150) DEFAULT NULL,
+  `postalCode` varchar(10) DEFAULT NULL,
+  `rewards` int(11) DEFAULT NULL,
+  `modifiedDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `accountFK_idx` (`accountFK`),
   CONSTRAINT `accountFK` FOREIGN KEY (`accountFK`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -130,4 +196,4 @@ CREATE TABLE `user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12 13:57:11
+-- Dump completed on 2018-11-13  9:22:08
