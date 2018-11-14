@@ -6,7 +6,7 @@ var survey = {
 
   getAllquestions: function(survey_id, callback) {
     return db.query(
-      'select question from survey inner join question on survey.id = question.surveyFK where survey.id=?',
+      'select question, question.id from survey inner join question on survey.id = question.surveyFK where survey.id=?',
       [survey_id],
       callback
     );
