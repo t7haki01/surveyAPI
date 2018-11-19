@@ -1,6 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var surveys = require('../models/survey');
+router.get('/maxId', function(req, res, next){
+    surveys.getMaxId(function (err, rows) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(rows);
+        }
+    })
+});
 router.get('/:survey_id?', function(req, res, next) {
   if (req.params.survey_id) {
     surveys.getsurveyByid(req.params.survey_id, function(err, rows) {

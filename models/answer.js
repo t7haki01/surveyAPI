@@ -23,6 +23,9 @@ var answer = {
       [answers.user_answer, answers.userFK, answers.question, answer_id],
       callback
     );
-  }
+  },
+    getMaxId: function(callback) {
+        return db.query('select MAX(id) as maxId from answers', callback);
+    }
 };
 module.exports = answer;

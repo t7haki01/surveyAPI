@@ -39,6 +39,9 @@ var answer_option = {
       ],
       callback
     );
-  }
+  },
+    getMaxId: function(callback) {
+        return db.query('select MAX(id) as maxId from answer_options', callback);
+    }
 };
 module.exports = answer_option;

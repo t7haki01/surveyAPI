@@ -38,6 +38,9 @@ var account = {
       ],
       callback
     );
-  }
+  },
+    getMaxId: function(callback) {
+        return db.query('select MAX(id) as maxId from account', callback);
+    }
 };
 module.exports = account;
