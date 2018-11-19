@@ -42,6 +42,9 @@ var survey = {
       [surveys.title, survey_id],
       callback
     );
-  }
+  },
+    getMaxId: function(callback) {
+        return db.query('select MAX(id) as maxId from survey', callback);
+    }
 };
 module.exports = survey;

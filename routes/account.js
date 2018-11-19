@@ -4,6 +4,15 @@ var accounts = require('../models/account');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+router.get('/maxId', function(req, res, next) {
+  accounts.getMaxId(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
 router.get('/:account_id?', function(req, res, next) {
   if (req.params.account_id) {
     accounts.getaccountByid(req.params.account_id, function(err, rows) {

@@ -1,6 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var answers = require('../models/answer');
+router.get('/maxId', function(req, res, next){
+    answers.getMaxId(function (err, rows) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(rows);
+        }
+    })
+});
 router.get('/:answer_id?', function(req, res, next) {
   if (req.params.answer_id) {
     answers.getanswerByid(req.params.answer_id, function(err, rows) {

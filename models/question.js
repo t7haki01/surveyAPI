@@ -43,6 +43,9 @@ var question = {
       [questions.question, questions.surveyFK, question_id],
       callback
     );
-  }
+  },
+    getMaxId: function(callback) {
+        return db.query('select MAX(id) as maxId from question', callback);
+    }
 };
 module.exports = question;
