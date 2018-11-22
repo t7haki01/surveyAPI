@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var accounts = require('../models/account');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 router.get('/maxId', function(req, res, next) {
   accounts.getMaxId(function(err, rows) {
@@ -13,6 +11,17 @@ router.get('/maxId', function(req, res, next) {
     }
   });
 });
+
+router.get('/getid/:username?', function(req, res, next) {
+  accounts.getidByaccount(req.params.username, function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 router.get('/:account_id?', function(req, res, next) {
   if (req.params.account_id) {
     accounts.getaccountByid(req.params.account_id, function(err, rows) {
@@ -41,6 +50,17 @@ router.post('/', function(req, res, next) {
     }
   });
 });
+
+router.post('/registration', function(req, res, next) {
+  accounts.registration(req.body, function(err, count) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(req.body); //or return count for 1 & 0
+    }
+  });
+});
+
 router.delete('/:account_id', function(req, res, next) {
   accounts.deleteaccount(req.params.account_id, function(err, count) {
     if (err) {
