@@ -6,6 +6,13 @@ var answer = {
   getanswerByid: function(answer_id, callback) {
     return db.query('select * from answers where id=?', [answer_id], callback);
   },
+  getanswerByQuestion: function(question, callback) {
+    return db.query(
+      'select user_answer as answer from answers where question=?',
+      [question],
+      callback
+    );
+  },
   addanswer: function(answers, callback) {
     return db.query(
       'insert into answers values(?,?,?,?)',
@@ -24,8 +31,8 @@ var answer = {
       callback
     );
   },
-    getMaxId: function(callback) {
-        return db.query('select MAX(id) as maxId from answers', callback);
-    }
+  getMaxId: function(callback) {
+    return db.query('select MAX(id) as maxId from answers', callback);
+  }
 };
 module.exports = answer;

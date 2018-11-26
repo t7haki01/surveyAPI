@@ -2,7 +2,7 @@ var db = require('../database');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var today = new Date();
-var expire = new Date().setYear(today.getFullYear() + 1);
+var expire = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
 
 var account = {
   getAllaccounts: function(callback) {

@@ -1,47 +1,59 @@
 var express = require('express');
 var router = express.Router();
 var users = require('../models/user');
-router.get('/account/:account_id?', function(req, res, next){
+
+//Here is part for the express jwt init and valid function,
+//require to study little more
+// var fs = require('fs');
+// var exjwt = require('express-jwt');
+// var path = require('path');
+// // var privateKEY = fs.readFileSync('../private.key', 'utf8');
+// var publicKEY = fs.readFileSync(
+//   path.join(__dirname, '..', 'public.key'),
+//   'utf8'
+// );
+
+router.get('/account/:account_id?', function(req, res, next) {
   if (req.params.account_id) {
-      users.getUserByFK(req.params.account_id, function (err, rows) {
-          if (err) {
-              res.json(err);
-          } else {
-              res.json(rows);
-          }
-      })
+    users.getUserByFK(req.params.account_id, function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
   }
 });
-router.get('/:user_id?/account', function(req, res, next){
-    if (req.params.user_id) {
-        users.getFKById(req.params.user_id, function (err, rows) {
-            if (err) {
-                res.json(err);
-            } else {
-                res.json(rows);
-            }
-        })
-    }
+router.get('/:user_id?/account', function(req, res, next) {
+  if (req.params.user_id) {
+    users.getFKById(req.params.user_id, function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  }
 });
-router.get('/firstname/:account_id?', function(req, res, next){
-    if (req.params.account_id) {
-        users.getFirstnameByAccountId(req.params.account_id, function (err, rows) {
-            if (err) {
-                res.json(err);
-            } else {
-                res.json(rows);
-            }
-        })
-    }
+router.get('/firstname/:account_id?', function(req, res, next) {
+  if (req.params.account_id) {
+    users.getFirstnameByAccountId(req.params.account_id, function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  }
 });
-router.get('/maxId', function(req, res, next){
-    users.getMaxId(function (err, rows) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
-    })
+router.get('/maxId', function(req, res, next) {
+  users.getMaxId(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
 });
 router.get('/:user_id?', function(req, res, next) {
   if (req.params.user_id) {

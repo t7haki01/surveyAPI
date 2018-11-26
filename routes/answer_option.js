@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var answer_options = require('../models/answer_option');
-router.get('/maxId', function(req, res, next){
-    answer_options.getMaxId(function (err, rows) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
-    })
+router.get('/maxId', function(req, res, next) {
+  answer_options.getMaxId(function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
 });
 router.get('/:answer_option_id?', function(req, res, next) {
   if (req.params.answer_option_id) {
@@ -30,6 +30,23 @@ router.get('/:answer_option_id?', function(req, res, next) {
         res.json(rows);
       }
     });
+  }
+});
+
+router.get('/question/:questionFK?', function(req, res, next) {
+  if (req.params.questionFK) {
+    answer_options.getanswer_optionByQuestion(req.params.questionFK, function(
+      err,
+      rows
+    ) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  } else {
+    return console.log(err);
   }
 });
 router.post('/', function(req, res, next) {

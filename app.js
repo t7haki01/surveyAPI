@@ -21,6 +21,7 @@ app.use(logger('dev'));
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const exjwt = require('express-jwt');
+var fs = require('file-system');
 
 //This is for the let server know we expect and allow header with content-type of Authorization
 app.use((req, res, next) => {
@@ -34,13 +35,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+var privateKEY = fs.readFileSync('./private.key', 'utf8');
+var publicKEY = fs.readFileSync('./public.key', 'utf8');
+var jwtOptions = {
+  /**And here comes the option i set only expire time based on npm doc many options like algorithm,
+   * notbefore and so on */
+  //For developing test, set as 30 sec
+  expiresIn: 600,
+
+  issuer: 'SurveyApp',
+  audience: 'http://localhost:3001/',
+  algorithm: 'RS256'
+};
 //Here setting for the express jsonwebtoken middleware
 //So to say simply required for express to properly utilize the token for request
 //secret must be same that will be sent to client
 
 //Here i set secret as simple sentence but normally? people said it is set with unrecognized random texts
 const jwtMW = exjwt({
-  secret: 'ouluOnKaupunki'
+  secret: /*'ouluOnKaupunki'*/ publicKEY
 });
 
 //Most important part verifying the client password to login
@@ -61,6 +74,7 @@ app.post('/log-in', (req, res) => {
       });
     } else {
       if (results.length > 0) {
+        console.log(privateKEY);
         bcrypt.compare(password, results[0].password, function(err, ress) {
           if (!ress) {
             res.json({
@@ -70,12 +84,11 @@ app.post('/log-in', (req, res) => {
           } else {
             //here set json web token with npm package account, secret key words with expire time
             let token = jwt.sign(
-              { account: account.account },
-              'ouluOnKaupunki',
-              {
-                //For developing test, set as 30 sec
-                expiresIn: 30
-              }
+              /**Here is the payload */ { account: account },
+
+              /**and here is my secret or private key normally it would be difficult unrecongized random text */
+              /* 'ouluOnKaupunki' */ privateKEY,
+              jwtOptions
             );
             res.json({
               status: true,
@@ -96,12 +109,20 @@ app.post('/log-in', (req, res) => {
   });
 });
 
-app.get('/jwt', jwtMW /* Using the express jwt MW here */, (req, res) => {
+app.get('/exjwt', jwtMW /* Using the express jwt MW here */, (req, res) => {
   console.log('Web Token Checked.');
   res.json({
     auth: true
   });
   res.send('You are authenticated'); //Sending some response when authenticated
+});
+
+app.post('/jwt', (req, res) => {
+  var legit = jwt.verify(req.body.token, publicKEY, jwtOptions);
+  res.json({
+    info: JSON.stringify(legit)
+  });
+  // JSON.stringify(res);
 });
 
 //jwt Until here

@@ -10,6 +10,13 @@ var answer_option = {
       callback
     );
   },
+  getanswer_optionByQuestion: function(question, callback) {
+    return db.query(
+      'select answer_option as answer from answer_options where questionFK=?',
+      [question],
+      callback
+    );
+  },
   addanswer_option: function(answer_options, callback) {
     return db.query(
       'insert into answer_options values(?,?,?)',
@@ -40,8 +47,8 @@ var answer_option = {
       callback
     );
   },
-    getMaxId: function(callback) {
-        return db.query('select MAX(id) as maxId from answer_options', callback);
-    }
+  getMaxId: function(callback) {
+    return db.query('select MAX(id) as maxId from answer_options', callback);
+  }
 };
 module.exports = answer_option;
