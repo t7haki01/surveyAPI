@@ -13,7 +13,7 @@ var question = {
 
   getAlloptions: function(question_id, callback) {
     return db.query(
-      'select answer_option from question inner join answer_options on question.id = answer_options.questionFK where question.id = ?',
+      'select answer_options.id, answer_option, questionFK from question inner join answer_options on question.id = answer_options.questionFK where question.id = ?',
       [question_id],
       callback
     );
