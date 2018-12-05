@@ -11,6 +11,29 @@ router.get('/maxId', function(req, res, next) {
   });
 });
 
+router.get('/question/count/:question?', function(req, res, next) {
+  answers.getNumberOfAnswersByQuestion(req.params.question, function(
+    err,
+    rows
+  ) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
+router.get('/survey/count/:surveyFK?', function(req, res, next) {
+  answers.getNumberOfAnswersBySurvey(req.params.surveyFK, function(err, rows) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 router.get('/question/:question?', function(req, res, next) {
   if (req.params.question) {
     answers.getanswerByQuestion(req.params.question, function(err, rows) {

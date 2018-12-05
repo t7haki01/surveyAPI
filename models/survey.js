@@ -4,6 +4,10 @@ var survey = {
     return db.query('select * from survey', callback);
   },
 
+  getSurveysByOwner: function(id, callback) {
+    return db.query('select * from survey where owner = ? ', [id], callback);
+  },
+
   getAllquestions: function(survey_id, callback) {
     return db.query(
       'select question, question.id from survey inner join question on survey.id = question.surveyFK where survey.id=?',
@@ -18,14 +22,6 @@ var survey = {
       callback
     );
   },
-
-  // getResults: function(survey_id, callback) {
-  //   return db.query(
-  //     'select question.question, answers.user_answer, answers.userFK from survey inner join question on survey.id = question.surveyFK inner join answers on question.id = answers.question where survey.id=?',
-  //     [survey_id],
-  //     callback
-  //   );
-  // },
 
   getsurveyByid: function(survey_id, callback) {
     return db.query('select * from survey where id=?', [survey_id], callback);

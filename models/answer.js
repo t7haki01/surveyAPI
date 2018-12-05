@@ -1,5 +1,20 @@
 var db = require('../database');
 var answer = {
+  getNumberOfAnswersByQuestion: function(question_id, callback) {
+    return db.query(
+      'select count(answers.id) as number from answers inner join user on answers.userFK = user.id' +
+        ' inner join question on answers.question = question.id where question.id = ?',
+      [question_id],
+      callback
+    );
+  },
+  getNumberOfAnswersBySurvey: function(surveyFK, callback) {
+    return db.query(
+      'select count(*) as number from (select user.id from answers inner join user on answers.userFK = user.id inner join question on answers.question = question.id where question.surveyFK = ? group by(userFK)) answers',
+      [surveyFK],
+      callback
+    );
+  },
   getAllanswers: function(callback) {
     return db.query('select * from answers', callback);
   },

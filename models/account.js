@@ -2,6 +2,8 @@ var db = require('../database');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var today = new Date();
+
+//Here setting expired date as 1 year after today which is when signing up date
 var expire = new Date(new Date().setFullYear(new Date().getFullYear() + 1));
 
 var account = {
