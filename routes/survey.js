@@ -65,18 +65,6 @@ router.get('/owner/:owner?', function(req, res, next) {
   }
 });
 
-router.get('/:survey_id?/results/', function(req, res, next) {
-  if (req.params.survey_id) {
-    surveys.getResults(req.params.survey_id, function(err, rows) {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(rows);
-      }
-    });
-  }
-});
-
 router.post('/', function(req, res, next) {
   surveys.addsurvey(req.body, function(err, count) {
     if (err) {

@@ -42,7 +42,7 @@ var survey = {
   updatesurvey: function(survey_id, surveys, callback) {
     return db.query(
       'update survey set title=?, owner=? where id=?',
-      [surveys.title, surveys.ownwer, survey_id],
+      [surveys.title, surveys.owner, survey_id],
       callback
     );
   },
