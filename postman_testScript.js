@@ -1,6 +1,4 @@
 
-//Only for post method
-
 /**Same test checking header content type but differently */
 pm.test("Content-Type is present", function () {
     pm.response.to.have.header("Content-Type");
@@ -46,31 +44,23 @@ tests["Status code is 200"] = responseCode.code === 200;
  });
 
 var jsonData = pm.response.json();
-tests["Checking id parameter from JSON data"] = jsonData[0].id === 1;
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
 
 
 var jsonData = pm.response.json();
-tests["Checking first name parameter from JSON data"] = jsonData[0].firstname === "first";
+tests["Checking parameter from JSON data"] = jsonData[0].firstname === "first";
 
 
 var jsonData = pm.response.json();
-tests["Checking last name parameter from JSON data"] = jsonData[0].lastname === "test";
+tests["Checking parameter from JSON data"] = jsonData[0].lastname === "test";
 
 /*Kind of similar test for testing validation body which is recieving data or not**/
 var jsonData = pm.response.json();
-tests["Checking is_exist parameter from JSON data"] = jsonData.is_exist === true;
+tests["Checking parameter from JSON data"] = jsonData.is_exist === true;
 
 pm.test("Body is correct", function () {
      pm.response.to.have.body("response_body_string");
  });
 
 var jsonData = pm.response.json();
-tests["Checking type value"] = jsonData[0].type === "admin";
-
-
-
-
-
-
-
-
+tests["Checking value"] = jsonData[0].type === "admin";
