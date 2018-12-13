@@ -1,0 +1,24 @@
+{
+  "_comment": "host can be 127.0.0.1",
+  "development": {
+    "username": "root",
+    "password": "test",
+    "database": "survey",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "test",
+    "database": "survey",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "test",
+    "database": "survey",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
