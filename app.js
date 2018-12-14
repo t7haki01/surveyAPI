@@ -34,33 +34,6 @@ app.use('/answer_options', answer_options);
 app.use('/answers', answers);
 app.use('/accounts', accounts);
 
-//From here for the google Auth
-const mongoose = require("mongoose");
-const cookieSession = require("cookie-session");
-const passport = require("passport");
-const keys = require("./config/keys");
-require("./models/GoogleUser");
-require("./models/GoogleSurvey");
-require("./services/passport");
-
-mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongoURI);
-
-app.use(
-  cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-
-require("./routes/authRoutes")(app);
-require("./routes/billingRoutes")(app);
-require("./routes/surveyRoutes")(app);
-
-//Until here Google Auth
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
