@@ -12,13 +12,23 @@ router.get('/maxId', function(req, res, next) {
 });
 
 router.get('/owner/:owner?', function(req, res, next) {
-  surveys.getSurveysByOwner(req.params.owner, function(err, rows) {
-    if (err) {
-      res.json(err);
-    } else {
-      res.json(rows);
-    }
-  });
+  if (req.params.owner) {
+    surveys.getSurveysByOwner(req.params.owner, function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  } else {
+    surveys.getAllsurveys(function(err, rows) {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(rows);
+      }
+    });
+  }
 });
 
 router.get('/:survey_id?', function(req, res, next) {
