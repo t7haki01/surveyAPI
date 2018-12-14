@@ -1238,3 +1238,472 @@ tests["Checking parameter from JSON data"] = jsonData.status === true;
 pm.test("Body is correct", function () {
      pm.response.to.have.body("response_body_string");
  });
+
+// Question get answer option method testing!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 6;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].answer_option === "Red";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].questionFK === 2;
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 7;
+
+
+// Question get result answer method testing!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[1].userFK === 5;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].userFK === 4;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].user_answer === "1";
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].user_answer === "7";
+
+// Survey get questions by survey id method testing!!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].question === "What is your favorite number among those?";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 2;
+
+//Answer options put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//Survey put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+//Question put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//account put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 1;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//Answer put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+//User put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+

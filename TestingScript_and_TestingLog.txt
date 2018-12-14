@@ -1,0 +1,5913 @@
+This is Testing Scripts and Postman Testing logs for the 
+Software Testing and Quality (DIN17SP)
+Integration Testing
+for the Group3_Han_Paloniemi_Moniruzzaman_Huu
+Just in case leaving here also 
+API documentation links since it is published in web
+https://documenter.getpostman.com/view/3900988/RzfjmTEW#a98e501b-c103-447d-8014-ac82b1723485
+
+/**From here starts 
+ * whole collection of testing scripts 
+ * after line 1715 then comes the testing log*/
+
+//User delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('{ "fieldCount": 0, "affectedRows": 1, "insertId": 0, "serverStatus": 2, "warningCoun:0, "message": "", "protocol41": true, "changedRows": 0}') });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("User Delete method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.protocol41).to.eql(true);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking protocol status"] = jsonData.protocol41 === true;
+
+
+var jsonData = pm.response.json();
+tests["Checking serverStatus"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning Count"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affectedRows"] = jsonData.affectedRows === 1;
+
+
+
+
+//users post method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("User Post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.firstname).to.eql("postman");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.firstname === "postman";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.accountFK === 6;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.lastname === "testing";
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking values"] = jsonData.type === "admin";
+
+
+//Here is for the user get method tests
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('{"id":1,"firstname":"first","lastname":"test","accountFK":1,"email":"test1@test.com","birthdate":"2018-12-30T22:00:00.000Z","phone":"111-1111","streetAddress":"testkau 1","postalCode":"11111","rewards":null,"modifiedDate":null,"type":"company"}');
+ });
+
+
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("User get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking id parameter from JSON data"] = jsonData[0].id === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking first name parameter from JSON data"] = jsonData[0].firstname === "first";
+
+
+var jsonData = pm.response.json();
+tests["Checking last name parameter from JSON data"] = jsonData[0].lastname === "test";
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking is_exist parameter from JSON data"] = jsonData.is_exist === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking type values"] = jsonData[0].type === "company";
+
+//Account get method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('');
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Account get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].account === "test1";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].isExpired === 0;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].account === "test2";
+
+
+//Account get only one id method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('');
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Account get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.account === "test1";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.isExpired === 0;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+
+//Account delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('{"fieldCount": 0,"affectedRows": 1,"insertId": 0,"serverStatus": 2,"warningCount": 0,"message": "","protocol41": true,"changedRows": 0}');
+ });
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.fieldCount === 0;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.serverStatus === 2;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData.changedRows === 0;
+
+
+
+//Account post method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 300ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(300);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('');
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("User get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.account).to.eql("postman11");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.password === 'test';
+''
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+
+//Answer get method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answers get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(2);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].user_answer === "1";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].question === 1;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].userFK === 4;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 3;
+
+
+
+
+//Answer get method per id testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answers get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(2);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.user_answer === "1";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].question === 1;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].userFK === 4;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+//Answer post method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+ pm.test("Body matches string", function () {
+     pm.expect(pm.response.text()).to.include('');
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.user_answer).to.eql("Somewhere Far");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.userFK === 6;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.question === 23;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+//Answer delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer Delete method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.protocol41).to.eql(true);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking protocol status"] = jsonData.protocol41 === true;
+
+
+var jsonData = pm.response.json();
+tests["Checking serverStatus"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning Count"] = jsonData.warningCount === 0;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affectedRows"] = jsonData.affectedRows === 1;
+
+
+//Question get method testing
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("User get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+//Question post method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Question Post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.question).to.eql("postman");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.surveyFK === "1";
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+//Question delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Question Delete method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.protocol41).to.eql(true);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking protocol status"] = jsonData.protocol41 === true;
+
+
+var jsonData = pm.response.json();
+tests["Checking serverStatus"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning Count"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affectedRows"] = jsonData.affectedRows === 1;
+
+
+//Survey get method testing!!
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Survey get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].title === "Survey Company1 Test";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].owner === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[1].id === 2;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[1].title === "Survey Company2 Test";
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].owner === 2;
+
+//Survey get method by id testing!!
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Survey get by id method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].title === "Survey Company1 Test";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].owner === 1;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+ //Survey Post method Testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Survey Post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.title).to.eql("test");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.owner === "2";
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+//Survey delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Survey Delete method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.protocol41).to.eql(true);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking protocol status"] = jsonData.protocol41 === true;
+
+
+var jsonData = pm.response.json();
+tests["Checking serverStatus"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning Count"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affectedRows"] = jsonData.affectedRows === 1;
+
+
+//Answer_options get method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer options get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].answer_option === "0";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].questionFK === 1;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 2;
+
+
+//Answer_options get method per id testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer options get method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData[0].id).to.eql(1);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].answer_option === "0";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].questionFK === 1;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+ //Answer option post method testing
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer option post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.id).to.eql("0");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.answer_option === "test";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.questionFK === "1";
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+
+ //Answer option delete method testing
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Answer option Delete method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.protocol41).to.eql(true);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking protocol status"] = jsonData.protocol41 === true;
+
+
+var jsonData = pm.response.json();
+tests["Checking serverStatus"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning Count"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affectedRows"] = jsonData.affectedRows === 1;
+
+//Login Post method testing
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Successful POST request", function () {
+    pm.expect(pm.response.code).to.be.oneOf([200, 201,202]);
+});
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+// Same test function checking response json Data especially first one is for the checking id and in other ways
+ pm.test("Login Post method", function () {
+     var jsonData = pm.response.json();
+     pm.expect(jsonData.err).to.eql(null);
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.message === "Successfully Login";
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData.status === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+// Question get answer option method testing!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 6;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].answer_option === "Red";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].questionFK === 2;
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 7;
+
+
+// Question get result answer method testing!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[1].userFK === 5;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].userFK === 4;
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].user_answer === "1";
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].user_answer === "7";
+
+// Survey get questions by survey id method testing!!
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].question === "What is your favorite number among those?";
+
+
+var jsonData = pm.response.json();
+tests["Checking parameter from JSON data"] = jsonData[0].id === 1;
+
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["Checking value"] = jsonData[1].id === 2;
+
+//Answer options put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//Survey put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+//Question put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//account put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 1;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+//Answer put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+//User put method testing!!!
+
+
+/**Same test checking header content type but differently */
+pm.test("Content-Type is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+tests["content-type header is present"] = postman.getResponseHeader("content-type");
+
+pm.test("Status code name has string", function () {
+    pm.response.to.have.status("OK");
+});
+
+
+/*Same test function checking response status in other ways **/
+tests["Status code is 200"] = responseCode.code === 200;
+ pm.test("Response is ok", function () {
+     pm.response.to.have.status(200);
+ });
+
+ pm.test("Response time is less than 200ms", function () {
+     pm.expect(pm.response.responseTime).to.be.below(200);
+ });
+
+
+ pm.test("response should be okay to process", function () { 
+     pm.response.to.not.be.error; 
+     pm.response.to.not.have.jsonBody("error"); 
+ });
+
+var jsonData = pm.response.json();
+tests["Checking affected rows from JSON data"] = jsonData.affectedRows === 1;
+
+
+var jsonData = pm.response.json();
+tests["Checking server from JSON data"] = jsonData.serverStatus === 2;
+
+
+var jsonData = pm.response.json();
+tests["Checking warning numbers from JSON data"] = jsonData.warningCount === 0;
+
+/*Kind of similar test for testing validation body which is recieving data or not**/
+var jsonData = pm.response.json();
+tests["Checking protocol41 from JSON data"] = jsonData.protocol41 === true;
+
+pm.test("Body is correct", function () {
+     pm.response.to.have.body("response_body_string");
+ });
+
+var jsonData = pm.response.json();
+tests["changed rows: "] = jsonData.changedRows === 1;
+
+
+/**From here starts the
+ * 
+ * postman api testing log
+ * 
+ * from postman runner
+ */
+
+
+{
+	"id": "f8d886ac-0df6-4225-939c-ab6246d7361d",
+	"name": "Survey",
+	"allTests": [],
+	"timestamp": "2018-12-14T08:54:38.412Z",
+	"collection_id": "b24e9e63-00d3-4db0-9e91-2bbe7b2e5f71",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "b24e9e63-00d3-4db0-9e91-2bbe7b2e5f71",
+		"name": "Survey",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"01f279a7-9241-4acd-9a34-d3dba5313d77",
+			"1eb4ba15-efb5-4175-a834-2e25fb105cc4",
+			"e3fa56ab-4419-43f1-8306-e078892fd2e3",
+			"9127817a-6317-4f6c-9647-c75840fe84a0",
+			"a98e501b-c103-447d-8014-ac82b1723485",
+			"72c2370d-6e7f-43e3-961b-a033184ba09a",
+			"d3753095-f905-4896-a6b7-64e6d07388d7",
+			"c1170d9a-1670-4237-8add-fbcf72b128d0",
+			"6621433e-0aa1-42bd-90ce-91f7fd7ad35c",
+			"f08ba1e5-83b6-4233-870f-816c5cda127e",
+			"870dbd32-2b08-4eb9-bf4e-8269358e15ff",
+			"4808223b-facf-4c1d-8ca3-b49d43a17044",
+			"4f604a77-62be-446c-9f8b-d61899f3646d",
+			"2103fb57-dc98-4b86-a533-f97d7280cf73",
+			"d92871b4-bfc6-4f8a-af59-127887133364",
+			"57d33292-9322-44b2-b675-56b9428ebe09",
+			"9d5131c5-87c1-4ed6-a058-cfd56917ed4d",
+			"e130b825-c46b-47db-a68f-4cfacfaed8a2",
+			"dcd5a930-fe13-4a78-842b-3a49b8ee9678",
+			"0143dad9-b65a-4f8f-b886-41fedbdf6e82",
+			"2586e852-6aaf-46eb-8ec5-f9c0f9f4a9cf",
+			"394e6a59-b9ca-426a-8096-03011a7336ba",
+			"17beaa32-9061-41e5-b3dc-e68981e4c7a8",
+			"83e596c1-e6b7-4ed0-9ed9-fb047a3e7ec4",
+			"60029777-7d49-490a-a428-33fa8ab1e31e",
+			"8ae8c3f0-e33b-4f3b-a821-62db2a2346fa",
+			"91178a9e-6c54-454b-8fe6-61802e2a3c2b",
+			"a7e8e3ef-26a6-4485-b338-20c2691959cc",
+			"44b03f14-2de2-4d18-9936-098ece6788b7",
+			"c528fc07-cb2c-4bc5-a5c2-305f91305022",
+			"84eb40c0-288d-4fa5-bab8-6f92994e8851",
+			"fa725688-0e0d-45bb-a737-d173f3b961ee",
+			"7db13cf6-651a-4309-ab4d-1bee22135ac3",
+			"a351ebcb-1bb3-4c3b-abc4-a94d987c3fb1"
+		],
+		"folders_order": [],
+		"owner": "3900988",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "Survey user get method",
+			"id": "01f279a7-9241-4acd-9a34-d3dba5313d77",
+			"url": "http://localhost:3000/users",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body matches string": true,
+				"User get method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking id parameter from JSON data": true,
+				"Checking first name parameter from JSON data": true,
+				"Checking last name parameter from JSON data": true,
+				"Checking type values": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking id parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking first name parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking last name parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking type values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body matches string": true,
+					"User get method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking id parameter from JSON data": true,
+					"Checking first name parameter from JSON data": true,
+					"Checking last name parameter from JSON data": true,
+					"Checking type values": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey user post method",
+			"id": "1eb4ba15-efb5-4175-a834-2e25fb105cc4",
+			"url": "http://localhost:3000/users",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"User Post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true,
+				"Checking values": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"User Post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true,
+					"Checking values": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "survey user put method",
+			"id": "e3fa56ab-4419-43f1-8306-e078892fd2e3",
+			"url": "http://localhost:3000/users/(Here comes ID)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": true,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": true,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey user delete method",
+			"id": "9127817a-6317-4f6c-9647-c75840fe84a0",
+			"url": "http://localhost:3000/users/29",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"User Delete method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking protocol status": true,
+				"Checking serverStatus": true,
+				"Checking warning Count": true,
+				"Checking affectedRows": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"4"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"User Delete method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking protocol status": true,
+					"Checking serverStatus": true,
+					"Checking warning Count": true,
+					"Checking affectedRows": false
+				}
+			],
+			"time": "4",
+			"totalRequestTime": "4",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey account get method",
+			"id": "a98e501b-c103-447d-8014-ac82b1723485",
+			"url": "http://localhost:3000/accounts",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body matches string": true,
+				"Account get method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": false,
+				"Checking value": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Account get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body matches string": true,
+					"Account get method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": false,
+					"Checking value": true
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey account post method",
+			"id": "72c2370d-6e7f-43e3-961b-a033184ba09a",
+			"url": "http://localhost:3000/accounts",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 300ms": true,
+				"response should be okay to process": true,
+				"Body matches string": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"140"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 300ms": true,
+					"response should be okay to process": true,
+					"Body matches string": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": false
+				}
+			],
+			"time": "140",
+			"totalRequestTime": "140",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey account update/put method",
+			"id": "d3753095-f905-4896-a6b7-64e6d07388d7",
+			"url": "http://localhost:3000/accounts/(Here comes ID)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": false,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"120"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": false,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "120",
+			"totalRequestTime": "120",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey account delete method",
+			"id": "c1170d9a-1670-4237-8add-fbcf72b128d0",
+			"url": "http://localhost:3000/accounts/(Here comes the Account ID)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true,
+				"Checking value": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"12"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true,
+					"Checking value": true
+				}
+			],
+			"time": "12",
+			"totalRequestTime": "12",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer get method",
+			"id": "6621433e-0aa1-42bd-90ce-91f7fd7ad35c",
+			"url": "http://localhost:3000/answers",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Answers get method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true,
+				"Checking value": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answers get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Answers get method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true,
+					"Checking value": true
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer Post method",
+			"id": "f08ba1e5-83b6-4233-870f-816c5cda127e",
+			"url": "http://localhost:3000/answers",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body matches string": true,
+				"Answer post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"32"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body matches string": true,
+					"Answer post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": false
+				}
+			],
+			"time": "32",
+			"totalRequestTime": "32",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer put method",
+			"id": "870dbd32-2b08-4eb9-bf4e-8269358e15ff",
+			"url": "http://localhost:3000/answers/(Here comes the id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": true,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": true,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer delete method",
+			"id": "4808223b-facf-4c1d-8ca3-b49d43a17044",
+			"url": "http://localhost:3000/answers/(here comes the id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Answer Delete method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking protocol status": true,
+				"Checking serverStatus": true,
+				"Checking warning Count": true,
+				"Checking affectedRows": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"4"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Answer Delete method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking protocol status": true,
+					"Checking serverStatus": true,
+					"Checking warning Count": true,
+					"Checking affectedRows": false
+				}
+			],
+			"time": "4",
+			"totalRequestTime": "4",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey question get method",
+			"id": "4f604a77-62be-446c-9f8b-d61899f3646d",
+			"url": "http://localhost:3000/questions",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"User get method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"User get method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "survey question post method",
+			"id": "2103fb57-dc98-4b86-a533-f97d7280cf73",
+			"url": "http://localhost:3000/questions",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Question Post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Question Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"16"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Question Post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true
+				}
+			],
+			"time": "16",
+			"totalRequestTime": "16",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey question put method",
+			"id": "d92871b4-bfc6-4f8a-af59-127887133364",
+			"url": "http://localhost:3000/questions/(Here cpmes the Id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": true,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": true,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey question delete method",
+			"id": "57d33292-9322-44b2-b675-56b9428ebe09",
+			"url": "http://localhost:3000/questions/ (Here comes the ID)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Question Delete method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking protocol status": true,
+				"Checking serverStatus": true,
+				"Checking warning Count": true,
+				"Checking affectedRows": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Question Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"32"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Question Delete method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking protocol status": true,
+					"Checking serverStatus": true,
+					"Checking warning Count": true,
+					"Checking affectedRows": false
+				}
+			],
+			"time": "32",
+			"totalRequestTime": "32",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey survey get method",
+			"id": "9d5131c5-87c1-4ed6-a058-cfd56917ed4d",
+			"url": "http://localhost:3000/surveys",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Survey get method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true,
+				"Checking value": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"36"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Survey get method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true,
+					"Checking value": true
+				}
+			],
+			"time": "36",
+			"totalRequestTime": "36",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey survey post method",
+			"id": "e130b825-c46b-47db-a68f-4cfacfaed8a2",
+			"url": "http://localhost:3000/surveys",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Survey Post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"32"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Survey Post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true
+				}
+			],
+			"time": "32",
+			"totalRequestTime": "32",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey survey put method",
+			"id": "dcd5a930-fe13-4a78-842b-3a49b8ee9678",
+			"url": "http://localhost:3000/surveys/(Here comes the id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": true,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": true,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey survey delete method",
+			"id": "0143dad9-b65a-4f8f-b886-41fedbdf6e82",
+			"url": "http://localhost:3000/surveys/(Here comes the id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Survey Delete method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking protocol status": true,
+				"Checking serverStatus": true,
+				"Checking warning Count": true,
+				"Checking affectedRows": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Survey Delete method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking protocol status": true,
+					"Checking serverStatus": true,
+					"Checking warning Count": true,
+					"Checking affectedRows": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer_options get method",
+			"id": "2586e852-6aaf-46eb-8ec5-f9c0f9f4a9cf",
+			"url": "http://localhost:3000/answer_options",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Response is ok",
+				"status": "pass",
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Response is ok": true,
+					"Response time is less than 200ms": true
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer_options post method",
+			"id": "394e6a59-b9ca-426a-8096-03011a7336ba",
+			"url": "http://localhost:3000/answer_options/",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Answer option post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer option post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"16"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Answer option post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true
+				}
+			],
+			"time": "16",
+			"totalRequestTime": "16",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer_options put method",
+			"id": "17beaa32-9061-41e5-b3dc-e68981e4c7a8",
+			"url": "http://localhost:3000/answer_options/(Here comes the answer options id)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking affected rows from JSON data": false,
+				"Checking server from JSON data": true,
+				"Checking warning numbers from JSON data": true,
+				"Checking protocol41 from JSON data": true,
+				"changed rows: ": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"44"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking affected rows from JSON data": false,
+					"Checking server from JSON data": true,
+					"Checking warning numbers from JSON data": true,
+					"Checking protocol41 from JSON data": true,
+					"changed rows: ": false
+				}
+			],
+			"time": "44",
+			"totalRequestTime": "44",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey answer_options delete method",
+			"id": "83e596c1-e6b7-4ed0-9ed9-fb047a3e7ec4",
+			"url": "http://localhost:3000/answer_options/(Here comes the ID)",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Answer option Delete method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking protocol status": true,
+				"Checking serverStatus": true,
+				"Checking warning Count": true,
+				"Checking affectedRows": false
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer option Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Answer option Delete method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking protocol status": true,
+					"Checking serverStatus": true,
+					"Checking warning Count": true,
+					"Checking affectedRows": false
+				}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey Login post method",
+			"id": "60029777-7d49-490a-a428-33fa8ab1e31e",
+			"url": "http://localhost:3000/login",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"error": null,
+				"name": "Content-Type is present",
+				"status": "pass",
+				"Successful POST request": true,
+				"Status code name has string": true,
+				"Response is ok": true,
+				"Response time is less than 200ms": true,
+				"response should be okay to process": true,
+				"Login Post method": true,
+				"Body is correct": true,
+				"content-type header is present": true,
+				"Status code is 200": true,
+				"Checking parameter from JSON data": true
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Login Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"184"
+			],
+			"allTests": [
+				{
+					"Content-Type is present": true,
+					"Successful POST request": true,
+					"Status code name has string": true,
+					"Response is ok": true,
+					"Response time is less than 200ms": true,
+					"response should be okay to process": true,
+					"Login Post method": true,
+					"Body is correct": true,
+					"content-type header is present": true,
+					"Status code is 200": true,
+					"Checking parameter from JSON data": true
+				}
+			],
+			"time": "184",
+			"totalRequestTime": "184",
+			"iterationResults": {}
+		},
+		{
+			"name": "Survey question get answer options method",
+			"id": "8ae8c3f0-e33b-4f3b-a821-62db2a2346fa",
+			"url": "http://localhost:3000/questions/(Here comes the id)/options",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {},
+			"times": [
+				"8"
+			],
+			"allTests": [
+				{}
+			],
+			"time": "8",
+			"totalRequestTime": "8",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 271,
+	"totalFail": 21,
+	"totalTime": 784,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "Survey user get method",
+			"id": "01f279a7-9241-4acd-9a34-d3dba5313d77",
+			"url": "http://localhost:3000/users",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking id parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking first name parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking last name parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking type values": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey user post method",
+			"id": "1eb4ba15-efb5-4175-a834-2e25fb105cc4",
+			"url": "http://localhost:3000/users",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking values": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "survey user put method",
+			"id": "e3fa56ab-4419-43f1-8306-e078892fd2e3",
+			"url": "http://localhost:3000/users/(Here comes ID)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey user delete method",
+			"id": "9127817a-6317-4f6c-9647-c75840fe84a0",
+			"url": "http://localhost:3000/users/29",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey account get method",
+			"id": "a98e501b-c103-447d-8014-ac82b1723485",
+			"url": "http://localhost:3000/accounts",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Account get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey account post method",
+			"id": "72c2370d-6e7f-43e3-961b-a033184ba09a",
+			"url": "http://localhost:3000/accounts",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 300ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey account update/put method",
+			"id": "d3753095-f905-4896-a6b7-64e6d07388d7",
+			"url": "http://localhost:3000/accounts/(Here comes ID)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey account delete method",
+			"id": "c1170d9a-1670-4237-8add-fbcf72b128d0",
+			"url": "http://localhost:3000/accounts/(Here comes the Account ID)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey answer get method",
+			"id": "6621433e-0aa1-42bd-90ce-91f7fd7ad35c",
+			"url": "http://localhost:3000/answers",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answers get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey answer Post method",
+			"id": "f08ba1e5-83b6-4233-870f-816c5cda127e",
+			"url": "http://localhost:3000/answers",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body matches string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey answer put method",
+			"id": "870dbd32-2b08-4eb9-bf4e-8269358e15ff",
+			"url": "http://localhost:3000/answers/(Here comes the id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey answer delete method",
+			"id": "4808223b-facf-4c1d-8ca3-b49d43a17044",
+			"url": "http://localhost:3000/answers/(here comes the id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey question get method",
+			"id": "4f604a77-62be-446c-9f8b-d61899f3646d",
+			"url": "http://localhost:3000/questions",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "survey question post method",
+			"id": "2103fb57-dc98-4b86-a533-f97d7280cf73",
+			"url": "http://localhost:3000/questions",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Question Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey question put method",
+			"id": "d92871b4-bfc6-4f8a-af59-127887133364",
+			"url": "http://localhost:3000/questions/(Here cpmes the Id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey question delete method",
+			"id": "57d33292-9322-44b2-b675-56b9428ebe09",
+			"url": "http://localhost:3000/questions/ (Here comes the ID)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Question Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey survey get method",
+			"id": "9d5131c5-87c1-4ed6-a058-cfd56917ed4d",
+			"url": "http://localhost:3000/surveys",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey get method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking value": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey survey post method",
+			"id": "e130b825-c46b-47db-a68f-4cfacfaed8a2",
+			"url": "http://localhost:3000/surveys",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey survey put method",
+			"id": "dcd5a930-fe13-4a78-842b-3a49b8ee9678",
+			"url": "http://localhost:3000/surveys/(Here comes the id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey survey delete method",
+			"id": "0143dad9-b65a-4f8f-b886-41fedbdf6e82",
+			"url": "http://localhost:3000/surveys/(Here comes the id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Survey Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey answer_options get method",
+			"id": "2586e852-6aaf-46eb-8ec5-f9c0f9f4a9cf",
+			"url": "http://localhost:3000/answer_options",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey answer_options post method",
+			"id": "394e6a59-b9ca-426a-8096-03011a7336ba",
+			"url": "http://localhost:3000/answer_options/",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer option post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey answer_options put method",
+			"id": "17beaa32-9061-41e5-b3dc-e68981e4c7a8",
+			"url": "http://localhost:3000/answer_options/(Here comes the answer options id)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affected rows from JSON data": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Checking server from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning numbers from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol41 from JSON data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"changed rows: ": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey answer_options delete method",
+			"id": "83e596c1-e6b7-4ed0-9ed9-fb047a3e7ec4",
+			"url": "http://localhost:3000/answer_options/(Here comes the ID)",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Answer option Delete method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking protocol status": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking serverStatus": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking warning Count": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking affectedRows": {
+					"pass": 0,
+					"fail": 1
+				}
+			}
+		},
+		{
+			"name": "Survey Login post method",
+			"id": "60029777-7d49-490a-a428-33fa8ab1e31e",
+			"url": "http://localhost:3000/login",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Content-Type is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code name has string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is ok": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				},
+				"response should be okay to process": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Login Post method": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body is correct": {
+					"pass": 1,
+					"fail": 0
+				},
+				"content-type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Checking parameter from JSON data": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "Survey question get answer options method",
+			"id": "8ae8c3f0-e33b-4f3b-a821-62db2a2346fa",
+			"url": "http://localhost:3000/questions/(Here comes the id)/options",
+			"time": "2018-12-14T08:54:38.412Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {}
+		}
+	],
+	"synced": false
+}

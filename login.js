@@ -115,6 +115,10 @@ router.post('/', (req, res) => {
   );
 });
 
+
+/**From here, testing scripts for own study,
+ * which is not used at all for this survey app project
+ */
 app.get('/exjwt', jwtMW /* Using the express jwt MW here */, (req, res) => {
   console.log('Web Token Checked.');
   res.json({
