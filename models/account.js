@@ -33,19 +33,22 @@ var account = {
     return db.query('delete from account where id=?', [account_id], callback);
   },
   updateaccount: function(account_id, accounts, callback) {
-    return db.query(
-      'update account set account=?, password=?, isExpired=?, joinedDate=?, expireDate=?, modifiedDate=? where id=?',
-      [
-        accounts.account,
-        accounts.password,
-        accounts.isExpired,
-        accounts.joinedDate,
-        expire,
-        today,
-        account_id
-      ],
-      callback
-    );
+      return bcrypt.hash(accounts.password, saltRounds, function(err, hash) {
+          return db.query(
+              'update account set account=?, password=?, isExpired=?, joinedDate=?, expireDate=?, modifiedDate=? where id=?',
+              [
+                  accounts.account,
+                  // accounts.password,
+                  hash,
+                  accounts.isExpired,
+                  accounts.joinedDate,
+                  expire,
+                  today,
+                  account_id
+              ],
+              callback
+          );
+      });
   },
   getMaxId: function(callback) {
     return db.query('select MAX(id) as maxId from account', callback);
