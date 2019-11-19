@@ -1,0 +1,8 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/tanjbjok/kihun.work/api/survey"
+PassengerBaseURI "/api/survey"
+PassengerNodejs "/home/tanjbjok/nodevenv/kihun.work/api/survey/10/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+PassengerAppLogFile "/home/tanjbjok/kihun.work/logs/api/api.log"
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
