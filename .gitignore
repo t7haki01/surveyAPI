@@ -3,3 +3,5 @@
 database.js
 /jwt
 /extra
+public.key
+private.key

@@ -16,9 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use(cors());
-app.use(logger('dev'));
-
 //For the Json Web Token
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
